@@ -15,18 +15,19 @@ for i in range(4,x):
 
 if x>2:
     print('*'*x)
-"""
-New code:
-Prompt: rewrite this code from scratch so the output is:
-*
-**
-* *
-*  *
-*   *
-******
-Comments:
-Copilot needed a few tries to get the code right and a bit of help with the last line, but the final version is correct.
-"""
+
+# New code:
+# Prompt: rewrite this code from scratch so the output is:
+# *
+# **
+# * *
+# *  *
+# *   *
+# ******
+# Comments:
+# Copilot needed a few tries to get the code right and a bit of help with the last line, 
+# but the final version is correct.
+
 x = int(input())
 
 for i in range(1, x+1):

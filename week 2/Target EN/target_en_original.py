@@ -122,6 +122,4 @@ def main():
     print(get_words_without_user('en.txt', list('wumrovkif')))
 
 if __name__ == "__main__":
-    import doctest
-    print(doctest.testmod())
     main()

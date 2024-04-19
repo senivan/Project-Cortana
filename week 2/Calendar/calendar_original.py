@@ -3,7 +3,12 @@ Module to generate calendar for one month
 https://github.com/DoktorTomato/Shevchuk-Ivan-lab8-task1
 '''
 import datetime
+import calendar as cal
+import time
 
+from benchmark_funcs import time_to_run, memory_used
+
+@memory_used
 def weekday_name(number: int) -> str:
     """
     Return a string representing a weekday
@@ -12,10 +17,14 @@ def weekday_name(number: int) -> str:
         
     >>> weekday_name(3)
     'thu'
+
+    Time taken: weekday_name 4.0189968422055243e-07
+    Memory: weekday_name (0, 64)
     """
     days_of_the_week = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
     return days_of_the_week[number]
 
+@memory_used
 def weekday(date: str) -> int:
     """
     Return an integer representing a weekday
@@ -35,14 +44,18 @@ def weekday(date: str) -> int:
     4
     >>> weekday('04.11.2023')
     5
+
+    Time taken: weekday 1.8888992490246893e-06
+    Memory: weekday (48, 359)
     """
     date_lst = date.split('.')
     day = int(date_lst[0])
-    month = int(date_lst[1])
-    year =  int(date_lst[2])
-    return datetime.date(year, month, day).weekday()
+    month_ = int(date_lst[1])
+    year_ =  int(date_lst[2])
+    return datetime.date(year_, month_, day).weekday()
 
-def calendar(month: int, year: int) -> str:
+@memory_used
+def calendar(this_month: int, this_year: int) -> str:
     """Return a string representing a\
     horizontal calendar for the given month and year.
 
@@ -61,36 +74,22 @@ def calendar(month: int, year: int) -> str:
      17  18  19  20  21  22  23
      24  25  26  27  28  29  30
      31
+
+    Time taken: calendar 9.347110067028552e-05
+    Memory: calendar (1512, 2906)
     """
-    cal_dict = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[]}
-    cal_lst = []
-    line = 0
-    match month:
-        case 1 | 3 | 5 | 7 | 8 | 10 | 12:
-            number_of_days = 31
-        case 2:
-            if year % 4 == 0:
-                number_of_days = 29
-            else:
-                number_of_days = 28
-        case _:
-            number_of_days = 30
-    for date in range(1, number_of_days+1):
-        cal_dict[weekday(f'{date}.{month}.{year}')].append(date)
-    day = 1
-    while day != number_of_days+1:
-        weekd = weekday(f'{day}.{month}.{year}')
-        if weekd == 0 and day==number_of_days:
-            line += 1
-        if weekd == 6:
-            line += 1
-        day += 1
-    for _ in range(line):
-        cal_lst.append([[]]*7)
-    return cal_lst
+    cal_str = cal.month(this_year, this_month, 3).rstrip()
+    cal_str = cal_str.lower()
+    cal_lst = cal_str.split('\n')
+    cal_lst.pop(0)
+    res = ''
+    for line in cal_lst:
+        res += f'{line}\n'
+    res = res.rstrip()
+    return res
 
-
-def transform_calendar(calendar: str) -> str:
+@memory_used
+def transform_calendar(calendar_: str) -> str:
     """Return a modified horizontal -> vertical calendar.
 
     calendar is a string of a calendar, returned by the calendar()
@@ -111,21 +110,41 @@ def transform_calendar(calendar: str) -> str:
     fri   7 14 21 28
     sat 1 8 15 22 29
     sun 2 9 16 23 30
-    """
-    pass
 
+    Time taken: transform_calendar 2.6480800239369274e-05
+    Memory: transform_calendar (388, 4068)
+    """
+    tmp_lst = calendar_.split('\n')
+    cal_lst = []
+    res_lst = []
+    res = ''
+    for line in tmp_lst:
+        line = line.replace('    ', '_ ')
+        line = line.split()
+        cal_lst.append(line)
+    for i in range(7):
+        vert_line = []
+        for line_ in cal_lst:
+            try:
+                if line_[i] == '_':
+                    vert_line.append(' ')
+                else:
+                    vert_line.append(line_[i])
+            except IndexError:
+                continue
+        res_lst.append(vert_line)
+    for vert in res_lst:
+        for ind, el in enumerate(vert):
+            if ind == len(vert) - 1:
+                res += f'{el}'
+            else:
+                res += f'{el} '
+        res += '\n'
+    res = res.rstrip()
+    return res
 
 if __name__ == '__main__':
-    import doctest
-    print(doctest.testmod())
-    # try:
-    #     print("Type month")
-    #     month = input()
-    #     month = int(month)
-    #     print("Type year")
-    #     year = input()
-    #     year = int(year)
-    #     print("\n\nThe calendar is: ")
-    #     print (calendar(month, year))
-    # except ValueError as err:
-    #     print(err)
+    weekday_name(3)
+    weekday("12.08.2015")
+    calendar(5, 2002)
+    print(transform_calendar(calendar(5, 2002)))

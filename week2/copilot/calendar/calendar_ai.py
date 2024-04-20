@@ -2,6 +2,7 @@
 Module to generate calendar for one month
 https://github.com/DoktorTomato/Shevchuk-Ivan-lab8-task1
 '''
+from benchmark_funcs import time_to_run, memory_used
 
 # From the first promt, copylot failed to optimize the code.
 # But when I gave it separate functions, it tried to change them,
@@ -12,7 +13,7 @@ import datetime
 import calendar as cal
 
 DAYS_OF_THE_WEEK = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
-
+@memory_used
 def weekday_name(number: int) -> str:
     """
     Return a string representing a weekday
@@ -23,7 +24,7 @@ def weekday_name(number: int) -> str:
     'thu'
     """
     return DAYS_OF_THE_WEEK[number]
-
+@memory_used
 def weekday(date: str) -> int:
     """
     Return an integer representing a weekday
@@ -46,7 +47,7 @@ def weekday(date: str) -> int:
     """
     day, month, year = map(int, date.split('.'))
     return datetime.date(year, month, day).weekday()
-
+@time_to_run
 def calendar(this_month: int, this_year: int) -> str:
     """Return a string representing a\
     horizontal calendar for the given month and year.
@@ -66,6 +67,8 @@ def calendar(this_month: int, this_year: int) -> str:
      17  18  19  20  21  22  23
      24  25  26  27  28  29  30
      31
+     Memory: calendar (882, 6126)
+     Time taken: calendar 4.101723003805091e-05
     """
     cal_str = cal.month(this_year, this_month, 3).rstrip()
     cal_str = cal_str.lower()
@@ -73,7 +76,7 @@ def calendar(this_month: int, this_year: int) -> str:
     cal_lst.pop(0)
     res = '\n'.join(cal_lst)
     return res
-
+@time_to_run
 def transform_calendar(calendar_: str) -> str:
     """Return a modified horizontal -> vertical calendar.
 
@@ -95,6 +98,8 @@ def transform_calendar(calendar_: str) -> str:
     fri   7 14 21 28
     sat 1 8 15 22 29
     sun 2 9 16 23 30
+    Memory: transform_calendar (224, 3078)
+    Time taken: transform_calendar 3.579497966711642e-06
     """
     tmp_lst = calendar_.split('\n')
     cal_lst = [line.replace('    ', '_ ').split() for line in tmp_lst]

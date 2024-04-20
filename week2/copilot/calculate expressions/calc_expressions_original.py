@@ -1,5 +1,6 @@
 """Lab №5_4"""
-
+from benchmark_funcs import time_to_run, memory_used
+@time_to_run
 def calculate_expression(expression:str) -> int:
     """
     (str) -> int
@@ -42,6 +43,9 @@ def calculate_expression(expression:str) -> int:
     -15
     >>> calculate_expression('Скільки буде -10 поділити на помножити на 3?')
     'Неправильний вираз!'
+
+    Memory: calculate_expression (0, 224)
+    Time taken: calculate_expression 1.573795965668978e-06
     """
     if isinstance(expression,str):
         znak_lst = ['+','-','*','/']
@@ -88,7 +92,22 @@ def calculate_expression(expression:str) -> int:
                 continue
             return 'Неправильний вираз!'
     return result
-
 if __name__ == "__main__":
-    import doctest
-    print(doctest.testmod())
+    calculate_expression('Скільки буде 8 відняти 3?')
+    calculate_expression('Скільки буде 8 мінус 3?')
+    calculate_expression('Скільки буде 3 помножити на 2 додати 7?')
+    calculate_expression('Скільки буде 10 поділити на -2 додати 11 мінус -4?')
+    calculate_expression('Скільки буде 10 розділити на 2?')
+    calculate_expression('Скільки буде 10 поділити на 2?')
+    calculate_expression('Скільки коштує цибуля?')
+    calculate_expression('Скільки буде 5 помножити на 4 помножити на 3 помножити на 2 помножити на 1 відняти 120 мінус 5?')
+    calculate_expression('Скільки буде 3 помножити на 0 поділити на 3?')
+    calculate_expression('Скільки буде 10 поділити на 0?')
+    calculate_expression('Скільки буде 10 9 додати?')
+    calculate_expression('Скільки буде 10 додати додати 9?')
+    calculate_expression('Скільки буде 9 9?')
+    calculate_expression('Скільки буде 2?')
+    calculate_expression('3 плюс 2?')
+    calculate_expression('Скільки буде 10 поділити на 2')
+    calculate_expression('Скільки буде -10 поділити на 2 помножити на 3?')
+    calculate_expression('Скільки буде -10 поділити на помножити на 3?')

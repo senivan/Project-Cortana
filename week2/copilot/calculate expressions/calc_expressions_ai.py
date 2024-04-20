@@ -1,11 +1,11 @@
 """Lab №5_4"""
-
+from benchmark_funcs import time_to_run, memory_used
 # Copilot was losing important cases while trying to optimize this code.
 # It took him a lot of promts to add checks and make the code work
 # and pass all the tests. He used eval, thus shortening the code.
 # He also found it difficult to work with code containing Ukrainian expressions.
 # In the end, the code runs correctly, but not much faster than the original version.
-
+@memory_used
 def calculate_expression(expression:str) -> int:
     """
     (str) -> int
@@ -48,6 +48,9 @@ def calculate_expression(expression:str) -> int:
     -15
     >>> calculate_expression('Скільки буде -10 поділити на помножити на 3?')
     'Неправильний вираз!'
+
+    Time taken: calculate_expression 4.5866209857194914e-06
+    Memory: calculate_expression (384, 26745)
     """
     # Dictionary to translate Ukrainian words to English
     translate_dict = {
@@ -83,5 +86,21 @@ def calculate_expression(expression:str) -> int:
         return 'Неправильний вираз!'
 
 if __name__ == "__main__":
-    import doctest
-    print(doctest.testmod(verbose=False))
+    calculate_expression('Скільки буде 8 відняти 3?')
+    calculate_expression('Скільки буде 8 мінус 3?')
+    calculate_expression('Скільки буде 3 помножити на 2 додати 7?')
+    calculate_expression('Скільки буде 10 поділити на -2 додати 11 мінус -4?')
+    calculate_expression('Скільки буде 10 розділити на 2?')
+    calculate_expression('Скільки буде 10 поділити на 2?')
+    calculate_expression('Скільки коштує цибуля?')
+    calculate_expression('Скільки буде 5 помножити на 4 помножити на 3 помножити на 2 помножити на 1 відняти 120 мінус 5?')
+    calculate_expression('Скільки буде 3 помножити на 0 поділити на 3?')
+    calculate_expression('Скільки буде 10 поділити на 0?')
+    calculate_expression('Скільки буде 10 9 додати?')
+    calculate_expression('Скільки буде 10 додати додати 9?')
+    calculate_expression('Скільки буде 9 9?')
+    calculate_expression('Скільки буде 2?')
+    calculate_expression('3 плюс 2?')
+    calculate_expression('Скільки буде 10 поділити на 2')
+    calculate_expression('Скільки буде -10 поділити на 2 помножити на 3?')
+    calculate_expression('Скільки буде -10 поділити на помножити на 3?')

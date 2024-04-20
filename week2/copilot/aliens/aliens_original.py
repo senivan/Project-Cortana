@@ -1,4 +1,5 @@
 '''lab11'''
+from benchmark_funcs import time_to_run, memory_used
 
 def read_file(file_path):
     '''
@@ -9,6 +10,8 @@ as file:
     ...     _=file.write('AB,200\\nBC,200')
     >>> read_file(file.name)
     {'AB': 200, 'BC': 200}
+    Time taken: read_file 1.6854819978107117e-05
+    Memory: read_file (805, 14661)
     '''
     dct = {}
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -20,7 +23,7 @@ as file:
             key, values = i.strip().split(',')
             dct[key] = int(values)
     return dct
-
+@memory_used
 def rescue_people(smarties, limit_iq):
     '''
     function to present a last of people, where one list means that this
@@ -28,6 +31,8 @@ def rescue_people(smarties, limit_iq):
     >>> rescue_people({'AB': 200, 'BC': 200, 'ID': 250, 'IB': 250, 'OC': 300, \
 'OD': 300, 'i': 350}, 550)
     (4, [['i', 'AB'], ['OC', 'IB'], ['OD', 'ID'], ['BC']])
+    Time taken: rescue_people 5.399766017944785e-06
+    Memory: rescue_people (384, 904)
     '''
     if len(smarties) == 0:
         return 0, []
@@ -55,5 +60,5 @@ def rescue_people(smarties, limit_iq):
     return first, all_trip
 
 if __name__ == '__main__':
-    import doctest
-    print(doctest.testmod())
+    dct = read_file("smart_people.txt")
+    print(rescue_people(dct, 550))

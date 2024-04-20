@@ -2,7 +2,7 @@
 Module to generate calendar for one month
 https://github.com/DoktorTomato/Shevchuk-Ivan-lab8-task1
 '''
-
+from benchmark_funcs import time_to_run, memory_used
 import datetime
 import calendar as cal
 
@@ -43,7 +43,7 @@ def weekday(date: str) -> int:
     month_ = int(date_lst[1])
     year_ =  int(date_lst[2])
     return datetime.date(year_, month_, day).weekday()
-
+@memory_used
 def calendar(this_month: int, this_year: int) -> str:
     """Return a string representing a\
     horizontal calendar for the given month and year.
@@ -63,6 +63,10 @@ def calendar(this_month: int, this_year: int) -> str:
      17  18  19  20  21  22  23
      24  25  26  27  28  29  30
      31
+    
+     Time taken: calendar 2.7293209026538534e-05
+     Memory: calendar (1072, 6316)
+     
     """
     cal_str = cal.month(this_year, this_month, 3).rstrip()
     cal_str = cal_str.lower()
@@ -73,7 +77,7 @@ def calendar(this_month: int, this_year: int) -> str:
         res += f'{line}\n'
     res = res.rstrip()
     return res
-
+@memory_used
 def transform_calendar(calendar_: str) -> str:
     """Return a modified horizontal -> vertical calendar.
 
@@ -95,6 +99,9 @@ def transform_calendar(calendar_: str) -> str:
     fri   7 14 21 28
     sat 1 8 15 22 29
     sun 2 9 16 23 30
+
+    Time taken: transform_calendar 6.6185030227643435e-06
+    Memory: transform_calendar (160, 3272)
     """
     tmp_lst = calendar_.split('\n')
     cal_lst = []

@@ -13,10 +13,11 @@ def time_to_run(func):
         res = 0
         for _ in range(1000):
             start_time = time.perf_counter()
-            func(*args, **kwargs)
+            fin = func(*args, **kwargs)
             end_time = time.perf_counter()
             res += (end_time - start_time)
         print("Time taken:", func.__name__, res/1000)
+        return fin
     return inner1
 
 def memory_used(func):
@@ -25,7 +26,8 @@ def memory_used(func):
     '''
     def inner2(*args, **kwargs):
         tracemalloc.start()
-        func(*args, **kwargs)
+        res = func(*args, **kwargs)
         print("Memory:", func.__name__, tracemalloc.get_traced_memory())
         tracemalloc.stop()
+        return res
     return inner2

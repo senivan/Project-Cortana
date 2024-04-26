@@ -10,8 +10,6 @@ def find_film_keywords(film_keywords: dict, film_name: str):
     True
     """
     result = set()
-    if isinstance(film_keywords, tuple):
-        film_keywords = film_keywords[1]
     for key in film_keywords:
         if film_name in film_keywords[key]:
             result.add(key)
@@ -36,9 +34,9 @@ def find_films_with_keywords(film_keywords: dict, num_of_films: int):
         else:
             mid_res[len(find_film_keywords(film_keywords, film))].append(film)
     for key in mid_res:
-        mid_res[key] = sorted(mid_res[key], reverse=True)
-    result = [(film, len(find_film_keywords(film_keywords, film))) \
-for key in mid_res for film in mid_res[key]]
+        mid_res[key] = sorted(mid_res[key], reverse=False)
+    result = [(film, len(find_film_keywords(film_keywords, film))
+               ) for _, films in mid_res.items() for film in films]
     return result[:num_of_films]
 
 

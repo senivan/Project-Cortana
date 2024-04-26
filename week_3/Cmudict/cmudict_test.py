@@ -1,9 +1,7 @@
-import unittest
-import copy
-
 '''
 This script has functions that work with dictionary 
 '''
+import unittest
 import copy
 
 def dict_reader_tuple(file_dict:str)->list:
@@ -123,7 +121,6 @@ AARONSON'S 1 EH1 R AH0 N S AH0 N Z")
         return result
     return None
 
-
 class TestDictReader(unittest.TestCase):
     '''
     Умова
@@ -135,6 +132,12 @@ class TestDictReader(unittest.TestCase):
     As argument functions dict_reader_tuple and dict_reader_dict 
     take a str of file name as an argument not their content. 
     In your test it's not the case which leads to Error. Please fix this
+
+    Name              Stmts   Miss  Cover   Missing
+    -----------------------------------------------
+    cmudict_test.py      79      2    97%   124, 165
+    -----------------------------------------------
+    TOTAL                79      2    97%
     '''
     def test_dict_reader_tuple(self):
         expected = [("NACHOS", 1, ["N", "AA1", "CH", "OW0", "Z"]),

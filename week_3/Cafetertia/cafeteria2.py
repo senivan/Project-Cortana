@@ -1,29 +1,4 @@
 """Cafeteria"""
-RECIPE = {
-        "espresso": {
-            'espresso': 30},
-        "latte": {
-            'espresso': 60,
-            'steamed_milk': 120, 
-            'foamed_milk': 15},
-        "macchiato": {
-            'espresso': 60,
-            'foamed_milk': 15},
-        "flat white": {
-            'espresso': 60,
-            'steamed_milk': 120},
-        "dopio": {
-            'espresso': 60},
-        "cappuccino": {
-            'espresso': 60,
-            'steamed_milk': 60, 
-            'foamed_milk': 60},
-        "lungo": {
-            'espresso': 90},
-        "cortado": {
-            'espresso': 60,
-            'steamed_milk': 60}
-            }
 
 class Track:
     """
@@ -231,7 +206,7 @@ class CustomCoffee(Coffee, FlavorMixin):
         if self.is_paid and self.flavor:
             return f'Your best {self.name} is ready! It has: \
 {f"{self.sugar} stickers of sugar, " if self.sugar > 0 else ""}\
-{"cinammon, " if self.cinammon else ""}{f"{self.syrup} syrup" if not self.syrup else ""}.'
+{"cinammon, " if self.cinammon else ""}{f"{self.syrup} syrup" if self.syrup else ""}.'
         return f'Order "{self.count} custom {self.name}" is created.'
     def __repr__(self) -> str:
         return f'{self.count} custom {self.name}'
@@ -243,3 +218,30 @@ class CustomCoffee(Coffee, FlavorMixin):
                     self.sugar == other.sugar and self.cinammon == other.cinammon
                     and self.syrup == other.syrup)
         return self.name == other.name and self.count == other.count
+
+
+RECIPE = {
+        "espresso": {
+            'espresso': 30},
+        "latte": {
+            'espresso': 60,
+            'steamed_milk': 120, 
+            'foamed_milk': 15},
+        "macchiato": {
+            'espresso': 60,
+            'foamed_milk': 15},
+        "flat white": {
+            'espresso': 60,
+            'steamed_milk': 120},
+        "dopio": {
+            'espresso': 60},
+        "cappuccino": {
+            'espresso': 60,
+            'steamed_milk': 60, 
+            'foamed_milk': 60},
+        "lungo": {
+            'espresso': 90},
+        "cortado": {
+            'espresso': 60,
+            'steamed_milk': 60}
+            }

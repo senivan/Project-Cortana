@@ -1,0 +1,2 @@
+Copilot needed few tries to write test correctly, and then some assistant with incorrect results of tests
+coverage 100%

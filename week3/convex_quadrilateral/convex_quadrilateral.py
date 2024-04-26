@@ -1,8 +1,9 @@
 '''
 Homework
 '''
-def lines_intersection(k_1: float|int, c_1: float|int, k_2: float|int, c_2: float|int)\
-    -> (float|int, float|int):
+import math
+
+def lines_intersection(k_1: float|int, c_1: float|int, k_2: float|int, c_2: float|int):
     '''
     float|int, float|int, float|int, float|int -> float|int, float|int
     This function takes four numbers (each of the numbers
@@ -57,17 +58,11 @@ def quadrangle_area(a_1: float|int, b_1: float|int, c_1: float|int,
     >>> quadrangle_area('l', 'j', 'j', 'k', 'j', 'k')
     
     '''
-    if isinstance(a_1, float|int) and isinstance(b_1, float|int)\
-        and isinstance(c_1, float|int)\
-        and isinstance(d_1, float|int) and isinstance(f_1, float|int)\
-        and isinstance(f_2, float|int):
-        s_11 = 4 * (f_1 ** 2) * (f_2 **2)
-        s_12 = (b_1 ** 2 + d_1 ** 2 - a_1 ** 2 - c_1 **2)**2
-        s_1 = ((s_11 - s_12)**0.5)/4
-        if s_12 != 0 and s_11 > s_12:
-            s_2 = round(s_1, 2)
-            return s_2
+    if (((4*(f_1**2)*(f_2**2))-(b_1**2+d_1**2-a_1**2-c_1**2)**2)/16) > 0:
+        s = math.sqrt(((4*(f_1**2)*(f_2**2))-(b_1**2+d_1**2-a_1**2-c_1**2)**2)/16)
+        return float(f'{round(s,2):.2f}')
     return None
+
 def four_lines_area(k_1: float|int, c_1: float|int, k_2: float|int,
                     c_2: float|int, k_3: float|int, c_3: float|int,
                     k_4: float|int, c_4: float|int) -> float|int:
@@ -82,27 +77,18 @@ def four_lines_area(k_1: float|int, c_1: float|int, k_2: float|int,
     >>> four_lines_area('l', 'j', 'j', 'k', 'j', 'k', 'j', 's')
     
     '''
-    if isinstance(k_1, float|int) and isinstance(c_1, float|int)\
-        and isinstance(k_2, float|int) and isinstance(c_2, float|int)\
-        and isinstance(k_3, float|int) and isinstance(c_3, float|int)\
-        and isinstance(k_4, float|int) and isinstance(c_4, float|int):
-        if ((k_1 != k_2 != k_3) and
-            (k_1 != k_2 != k_4) and
-            (k_2 != k_3 != k_4) and
-            (k_1 != k_3 != k_4)):
-            x_1, y_1 = lines_intersection(k_1, c_1, k_2, c_2)
-            x_2, y_2 = lines_intersection(k_2, c_2, k_3, c_3)
-            x_3, y_3 = lines_intersection(k_3, c_3, k_4, c_4)
-            x_4, y_4 = lines_intersection(k_4, c_4, k_1, c_1)
-
-            a_1 = distance(x_1, y_1, x_2, y_2)
-            b_1 = distance(x_2, y_2, x_3, y_3)
-            c_1 = distance(x_3, y_3, x_4, y_4)
-            d_1 = distance(x_4, y_4, x_1, y_1)
-            f_1 = distance(x_1, y_1, x_3, y_3)
-            f_2 = distance(x_2, y_2, x_4, y_4)
-
-            s_out = quadrangle_area(a_1, b_1, c_1, d_1, f_1, f_2)
-            return s_out
+    if (lines_intersection(k_1, c_1, k_2, c_2) is None or
+    lines_intersection(k_2, c_2, k_3, c_3) is None or
+    lines_intersection(k_3, c_3, k_4, c_4) is None):
         return 0
-    return None
+    x1, y1 = lines_intersection(k_1, c_1, k_2, c_2)
+    x2, y2 = lines_intersection(k_2, c_2, k_3, c_3)
+    x3, y3 = lines_intersection(k_3, c_3, k_4, c_4)
+    x4, y4 = lines_intersection(k_4, c_4, k_1, c_1)
+    a = distance(x1, y1, x2, y2)
+    b = distance(x2, y2, x3, y3)
+    c = distance(x3, y3, x4, y4)
+    d = distance(x4, y4, x1, y1)
+    f1 = distance(x1, y1, x3, y3)
+    f2 = distance(x2, y2, x4, y4)
+    return quadrangle_area(a, b, c, d, f1, f2)

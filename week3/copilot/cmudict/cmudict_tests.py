@@ -1,5 +1,5 @@
 import unittest
-from week3.cmudict.cmudict import dict_reader_tuple, dict_reader_dict, dict_invert
+from cmudict import dict_reader_tuple, dict_reader_dict, dict_invert
 
 class TestCmuDict(unittest.TestCase):
     def setUp(self):

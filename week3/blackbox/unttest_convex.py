@@ -2,8 +2,8 @@ import unittest
 from convex_ai import lines_intersection, distance, quadrangle_area, four_lines_area
 import coverage
 
-cov = coverage.coverage()
-cov.start()
+# cov = coverage.coverage()
+# cov.start()
 
 class TestConvexQuadrilateral(unittest.TestCase):
 
@@ -29,7 +29,7 @@ class TestConvexQuadrilateral(unittest.TestCase):
         self.assertIsNone(four_lines_area(1, 1, 1, 2, 2, 1, 1, 0))
         self.assertIsNone(four_lines_area(1, 10, -1, 10, 1, -10, -1, -10))
 
-cov.stop()
-cov.report()
-if __name__ == '__main__':
-    unittest.main()
+# cov.stop()
+# cov.report()
+# if __name__ == '__main__':
+#     unittest.main()

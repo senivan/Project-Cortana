@@ -2,8 +2,8 @@ import unittest
 from keyword_ai import find_film_keywords, find_films_with_keywords
 import coverage
 
-cov = coverage.coverage()
-cov.start()
+# cov = coverage.coverage()
+# cov.start()
 
 class TestFindFilmKeywords(unittest.TestCase):
     def test_find_film_keywords(self):
@@ -89,6 +89,6 @@ class TestFindFilmKeywords(unittest.TestCase):
         film_keywords = {'keyword1': ['film2'], 'keyword2': ['film1', 'film2'], 'keyword3': ['film1'], 'keyword4': ['film3'], 'keyword5': ['film4'], 'keyword6': ['film5'], 'keyword7': ['film6'], 'keyword8': ['film7'], 'keyword9': ['film8'], 'keyword10': ['film9'], 'keyword11': ['film10']}
         self.assertEqual(find_films_with_keywords(film_keywords, 10), [('film2', 2), ('film1', 2), ('film3', 1), ('film4', 1), ('film5', 1), ('film6', 1), ('film7', 1), ('film8', 1), ('film9', 1), ('film10', 1)])
 
-unittest.main(exit=False)
-cov.stop()
-cov.report()
+# unittest.main(exit=False)
+# cov.stop()
+# cov.report()

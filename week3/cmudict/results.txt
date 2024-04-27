@@ -1,0 +1,1 @@
+Copilot wrote almost full tests for code, the  only miss was the None return for dict_invert function

@@ -1,18 +1,18 @@
 '''Cafeteria testing'''
 
 # After creating the tests, the number of tests covering
-# the task was 95. Next, copylot tried to determine which
+# the task was 95. Next, copilot tried to determine which
 # parts of the problem it did not cover. ("What corner cases
 # are not covered by the tests in the class...?").
 # He added additional checks to the __str__ and __eq__ functions,
 # but until the last moment he did not realize that some arguments
-# should be defined in separate clauses, not in the initial.
+# should be defined in separate classes, not in the initial.
 # He also failed to cover one case in __eq__ in the Coffee class (when flavor is False).
 # In the end, the copylot managed to cover the task with 99% of the tests,
 # but with hints about specific cases in individual functions.
 
 import unittest
-from dania_cafeteria import Coffee, CustomCoffee, FlavorMixin, Track, RECIPE
+from cafeteria import Coffee, CustomCoffee, FlavorMixin, Track, RECIPE
 
 class TestCafeteriaClass(unittest.TestCase):
     def test_cafeteria_class(self):

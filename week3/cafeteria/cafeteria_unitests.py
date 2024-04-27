@@ -13,7 +13,7 @@
 # The code now works 100% correctly.
 
 import unittest
-from cafeteria import Coffee, CustomCoffee, FlavorMixin, Track, RECIPE
+from dania_cafeteria import Coffee, CustomCoffee, FlavorMixin, Track, RECIPE
 
 class TestCafeteriaClass(unittest.TestCase):
     def test_cafeteria_class(self):
